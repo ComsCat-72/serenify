@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Awareness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .hero-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        .hero-button:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .chatbot-button {
+            background-color: #FF6B6B;
+            color: white;
+            box-shadow: 0 4px 6px rgba(255, 107, 107, 0.2);
+        }
+        .chatbot-button:hover {
+            background-color: #FF5252;
+            box-shadow: 0 6px 8px rgba(255, 107, 107, 0.4);
+        }
+        .assessment-button {
+            background-color: #4ECDC4;
+            color: white;
+            box-shadow: 0 4px 6px rgba(78, 205, 196, 0.2);
+        }
+        .assessment-button:hover {
+            background-color: #45B7AA;
+            box-shadow: 0 6px 8px rgba(78, 205, 196, 0.4);
+        }
+        @media (max-width: 768px) {
+            .hero-button {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="mobile-nav">
+        <a href="index.html"><i class="fas fa-home"></i></a>
+        <a href="info.html"><i class="fas fa-info-circle"></i></a>
+        <a href="support.html"><i class="fas fa-hands-helping"></i></a>
+        <a href="involved.html"><i class="fas fa-users"></i></a>
+        <a href="contact.html"><i class="fas fa-envelope"></i></a>
+    </nav>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/logo.png" alt="Mental Health Awareness Logo">
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="info.html">Info</a>
+                <a href="support.html">Support</a>
+                <a href="involved.html">Get Involved</a>
+                <a href="contact.html">Contact us</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Understanding and Supporting Mental Health</h1>
+                <p>Join us in raising awareness and providing support for those facing mental health challenges.</p>
+                <a href="https://www.who.int/news-room/fact-sheets/detail/depression/?gad_source=1&gclid=CjwKCAjwiaa2BhAiEiwAQBgyHqx6pUIiWgPySbDIvUVWVVfOLlVykX0rKPn9eRlU-jmJUCLrzPR1zBoCfFoQAvD_BwE" class="cta-button">Learn More</a>
+                <div class="hero-buttons">
+                    <a href="chatbot.html" class="hero-button chatbot-button">Chat with AI</a>
+                    <a href="assessment.html" class="hero-button assessment-button">Take Assessment</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="introduction">
+                <h2>Introduction to Mental Health Challenges</h2>
+                <div class="content-wrapper">
+                    <img src="img/New Mental Health Certification Will Help Create Healthier Workplaces.jpg" alt="People supporting each other">
+                    <div>
+                        <p>Mental health is a crucial aspect of overall well-being, affecting how we think, feel, and act. Despite its importance, many people face challenges in maintaining good mental health, often struggling in silence.</p>
+                        <p>Our website aims to shed light on these challenges, provide valuable information, and offer support to those in need. By understanding and addressing mental health issues, we can create a more compassionate and supportive society.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="importance">
+                <h2>Why Raising Awareness Matters</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <img src="img/health.png" alt="Education Icon">
+                        <h3>Education</h3>
+                        <p>Informing people about mental health reduces stigma and promotes understanding.</p>
+                    </div>
+                    <div class="card">
+                        <img src="img/support_agent_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Support Icon">
+                        <h3>Support</h3>
+                        <p>Awareness leads to better support systems for those facing mental health challenges.</p>
+                    </div>
+                    <div class="card">
+                        <img src="img/home_health_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Treatment Icon">
+                        <h3>Treatment</h3>
+                        <p>Increased awareness encourages people to seek help and access appropriate treatment.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="website-overview">
+                <h2>What You'll Find on Our Website</h2>
+                <ul>
+                    <li>In-depth information about various mental health challenges</li>
+                    <li>Resources for seeking help and support</li>
+                    <li>Personal stories and experiences</li>
+                    <li>Tips for maintaining good mental health</li>
+                    <li>Ways to get involved and make a difference</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>About Us</h3>
+                <p>We are dedicated to raising awareness about mental health and providing support to those in need.</p>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="info.html">Information</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="involved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> 0794674689</p>
+                <p><i class="fas fa-envelope"></i> igirimbabazie72@gmail.com</p>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Comscat. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

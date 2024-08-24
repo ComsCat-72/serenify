@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depression Support Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #333;
+            --primary-color: #4a90e2;
+            --secondary-color: #e8ecf0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #chatbot-container {
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            max-height: 600px;
+            border: 1px solid #dbe1e8;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        #chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            height: 60px;
+            font-size: 18px;
+        }
+        #chat-header-title {
+            margin-left: 15px;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+        }
+        #chat-input {
+            display: flex;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            align-items: center;
+            border-top: 1px solid #dbe1e8;
+        }
+        #user-input {
+            flex-grow: 1;
+            border: 1px solid #dbe1e8;
+            border-radius: 24px;
+            padding: 12px 18px;
+            font-size: 16px;
+            background-color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+        #send-message, #voice-input, #voice-output {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .message {
+            max-width: 70%;
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.4;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+        .user-message {
+            background-color: var(--primary-color);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .bot-message {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            align-self: flex-start;
+        }
+        .typing-effect {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+        .typing-effect i {
+            font-size: 16px;
+            color: var(--primary-color);
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --primary-color: #3a7bc8;
+            --secondary-color: #2c2c2c;
+        }
+        #dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        @media (max-width: 480px) {
+            #chatbot-container {
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
+            }
+            body {
+                align-items: flex-start;
+            }
+            .message {
+                max-width: 80%;
+            }
+            #chat-input {
+                padding: 10px;
+            }
+            #user-input {
+                padding: 10px 15px;
+            }
+            #send-message, #voice-input, #voice-output {
+                width: 40px;
+                height: 40px;
+                margin-left: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="chatbot-container">
+        <div id="chat-header">
+            <a href="support.html" id="back-button" class="nav-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <span id="chat-header-title">Depression Support Chatbot</span>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input">
+            <input type="text" id="user-input" placeholder="Type a message">
+            <button id="voice-input"><i class="fas fa-microphone"></i></button>
+            <button id="voice-output"><i class="fas fa-volume-up"></i></button>
+            <button id="send-message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div id="voice-status"></div>
+    </div>
+    <button id="dark-mode-toggle"><i class="fas fa-moon"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendMessageButton = document.getElementById('send-message');
+            const voiceInputButton = document.getElementById('voice-input');
+            const voiceOutputButton = document.getElementById('voice-output');
+            const voiceStatus = document.getElementById('voice-status');
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+            let voiceOutputEnabled = false;
+
+            function addMessage(message, isUser) {
+                const messageElement = appendMessage(message, isUser);
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function appendMessage(message, isUser) {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+                
+                if (!isUser) {
+                    const contentSpan = document.createElement('span');
+                    contentSpan.classList.add('bot-message-content');
+                    messageElement.appendChild(contentSpan);
+
+                    const typingEffect = document.createElement('span');
+                    typingEffect.classList.add('typing-effect');
+                    typingEffect.innerHTML = '<i class="fas fa-cat"></i>';
+                    messageElement.appendChild(typingEffect);
+
+                    typeMessage(message, contentSpan, typingEffect);
+                } else {
+                    messageElement.textContent = message;
+                }
+
+                return messageElement;
+            }
+
+            function typeMessage(message, element, typingEffect) {
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i < message.length) {
+                        element.textContent += message.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                        typingEffect.style.display = 'none';
+                    }
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 50);
+            }
+
+            async function sendMessage(message, isVoiceInput = false) {
+                if (message) {
+                    addMessage(message, true);
+                    userInput.value = '';
+
+                    try {
+                        const response = await fetch('http://localhost:3000/api/chat', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ message: message, userId: 'user123', isVoiceInput: isVoiceInput }),
+                        });
+                        const data = await response.json();
+                        addMessage(data.reply, false);
+                        if (voiceOutputEnabled) {
+                            speakResponse(data.reply);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        addMessage('Sorry, I encountered an error. Please try again.', false);
+                    }
+                }
+            }
+
+            sendMessageButton.addEventListener('click', () => sendMessage(userInput.value));
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage(userInput.value);
+                }
+            });
+
+            voiceInputButton.addEventListener('click', function() {
+                startVoiceRecognition((transcript) => {
+                    userInput.value = transcript;
+                    sendMessage(transcript, true);
+                });
+            });
+
+            voiceOutputButton.addEventListener('click', function() {
+                voiceOutputEnabled = !voiceOutputEnabled;
+                voiceOutputButton.style.backgroundColor = voiceOutputEnabled ? '#2ecc71' : '#4a90e2';
+                voiceStatus.textContent = voiceOutputEnabled ? 'Voice output enabled' : 'Voice output disabled';
+            });
+
+            function startVoiceRecognition(callback) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+
+                recognition.onstart = function() {
+                    voiceStatus.textContent = 'Listening...';
+                };
+
+                recognition.onresult = (event) => {
+                    const current = event.resultIndex;
+                    const transcript = event.results[current][0].transcript;
+                    voiceStatus.textContent = 'Voice input received';
+                    callback(transcript);
+                };
+
+                recognition.onerror = function(event) {
+                    voiceStatus.textContent = 'Error occurred in recognition: ' + event.error;
+                };
+
+                recognition.onend = function() {
+                    voiceStatus.textContent = 'Voice recognition ended';
+                };
+
+                recognition.start();
+            }
+
+            function speakResponse(text) {
+                const speech = new SpeechSynthesisUtterance(text);
+                let voices = window.speechSynthesis.getVoices();
+                
+                if (voices.length === 0) {
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        voices = window.speechSynthesis.getVoices();
+                        setFemaleVoice();
+                    };
+                } else {
+                    setFemaleVoice();
+                }
+
+                function setFemaleVoice() {
+                    const femaleVoice = voices.find(voice => 
+                        voice.name.includes('female') || 
+                        voice.name.includes('Female') || 
+                        voice.name.includes('woman') ||
+                        voice.name.includes('Woman')
+                    );
+                    if (femaleVoice) {
+                        speech.voice = femaleVoice;
+                    }
+                }
+
+                speech.pitch = 1.2;
+                speech.rate = 1.0;
+                window.speechSynthesis.speak(speech);
+            }
+
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') ? 
+                    '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            });
+
+            // Initial bot message
+            addMessage("Hello! I'm here to help. How are you feeling today?", false);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "en": {
+    "greeting": "Hello! How can I help you today?",
+    "how_are_you": "I'm doing well, thank you. How are you feeling?",
+    "express_sadness": "I'm sorry to hear that you're feeling sad. Would you like to talk about it?",
+    "express_depression": "I understand that you're feeling depressed. Remember, it's okay to seek help.",
+    "supportive": "Remember, you're not alone in this. Have you considered talking to a professional?",
+    "default": "I'm here to listen and support you. Can you tell me more about how you're feeling?"
+  },
+  "rw": {
+    "greeting": "Muraho! Ni gute nabafasha uyu munsi?",
+    "how_are_you": "Meze neza, murakoze. Wowe umeze ute?",
+    "express_sadness": "Mbabariye kumva ko mwumva mubabaye. Mushaka kuvuga ibyabyo?",
+    "express_depression": "Ndumva ko mufite agahinda. Mwibuke, nta kibazo gushaka ubufasha.",
+    "supportive": "Mwibuke, ntimuri mwenyine muri ibi. Mwaba mwatekereje kuvugana n'umuhanga?",
+    "default": "Ndi hano kugira ngo mbumve kandi mbashyigikire. Mwambwira byinshi ku buryo mwiyumvamo?"
+  }
+}

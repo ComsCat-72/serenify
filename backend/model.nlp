@@ -1,0 +1,737 @@
+{
+  "settings": {
+    "languages": [
+      "eng",
+      "kin"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en",
+      "ki"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "hello": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "hi": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "are,how,you": {
+            "intent": "how_are_you",
+            "domain": "default"
+          },
+          "is,name,what,your": {
+            "intent": "ask_name",
+            "domain": "default"
+          },
+          "are,who,you": {
+            "intent": "ask_identity",
+            "domain": "default"
+          },
+          "feel,i,sad": {
+            "intent": "express_sadness",
+            "domain": "default"
+          },
+          "am,depress,i": {
+            "intent": "express_depression",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greeting": "default",
+          "how_are_you": "default",
+          "ask_name": "default",
+          "ask_identity": "default",
+          "express_sadness": "default",
+          "express_depression": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "hello",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "hi",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "how are you",
+            "intent": "how_are_you"
+          },
+          {
+            "domain": "default",
+            "utterance": "what's your name",
+            "intent": "ask_name"
+          },
+          {
+            "domain": "default",
+            "utterance": "who are you",
+            "intent": "ask_identity"
+          },
+          {
+            "domain": "default",
+            "utterance": "I feel sad",
+            "intent": "express_sadness"
+          },
+          {
+            "domain": "default",
+            "utterance": "I'm depressed",
+            "intent": "express_depression"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "hello": 1,
+              "hi": 1,
+              "how": 1,
+              "are": 1,
+              "you": 1,
+              "what": 1,
+              "is": 1,
+              "your": 1,
+              "name": 1,
+              "who": 1,
+              "i": 1,
+              "feel": 1,
+              "sad": 1,
+              "am": 1,
+              "depress": 1
+            },
+            "intents": {
+              "greeting": 1,
+              "how_are_you": 1,
+              "ask_name": 1,
+              "ask_identity": 1,
+              "express_sadness": 1,
+              "express_depression": 1
+            },
+            "intentFeatures": {
+              "greeting": {
+                "hello": 1,
+                "hi": 1
+              },
+              "how_are_you": {
+                "how": 1,
+                "are": 1,
+                "you": 1
+              },
+              "ask_name": {
+                "what": 1,
+                "is": 1,
+                "your": 1,
+                "name": 1
+              },
+              "ask_identity": {
+                "who": 1,
+                "are": 1,
+                "you": 1
+              },
+              "express_sadness": {
+                "i": 1,
+                "feel": 1,
+                "sad": 1
+              },
+              "express_depression": {
+                "i": 1,
+                "am": 1,
+                "depress": 1
+              }
+            },
+            "featuresToIntent": {
+              "hello": [
+                "greeting"
+              ],
+              "hi": [
+                "greeting"
+              ],
+              "how": [
+                "how_are_you"
+              ],
+              "are": [
+                "how_are_you",
+                "ask_identity"
+              ],
+              "you": [
+                "how_are_you",
+                "ask_identity"
+              ],
+              "what": [
+                "ask_name"
+              ],
+              "is": [
+                "ask_name"
+              ],
+              "your": [
+                "ask_name"
+              ],
+              "name": [
+                "ask_name"
+              ],
+              "who": [
+                "ask_identity"
+              ],
+              "i": [
+                "express_sadness",
+                "express_depression"
+              ],
+              "feel": [
+                "express_sadness"
+              ],
+              "sad": [
+                "express_sadness"
+              ],
+              "am": [
+                "express_depression"
+              ],
+              "depress": [
+                "express_depression"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "hello",
+                "hi",
+                "how",
+                "are",
+                "you",
+                "what",
+                "is",
+                "your",
+                "name",
+                "who",
+                "i",
+                "feel",
+                "sad",
+                "am",
+                "depress"
+              ],
+              "intents": [
+                "greeting",
+                "how_are_you",
+                "ask_name",
+                "ask_identity",
+                "express_sadness",
+                "express_depression"
+              ],
+              "perceptrons": [
+                [
+                  8.685429573059082,
+                  8.69774341583252,
+                  -1.1208857297897339,
+                  -2.209899663925171,
+                  -2.209899663925171,
+                  -1.3796759843826294,
+                  -1.3796759843826294,
+                  -1.3796759843826294,
+                  -1.3796759843826294,
+                  -1.0886855125427246,
+                  -2.758037805557251,
+                  -1.3796815872192383,
+                  -1.3796815872192383,
+                  -1.37684965133667,
+                  -1.37684965133667,
+                  5.523277851088059
+                ],
+                [
+                  -0.5075960159301758,
+                  -0.5047115683555603,
+                  8.215326309204102,
+                  2.64406156539917,
+                  2.64406156539917,
+                  -0.2237863838672638,
+                  -0.2237863838672638,
+                  -0.2237863838672638,
+                  -0.2237863838672638,
+                  -5.580185413360596,
+                  -0.3404523730278015,
+                  -0.1683247685432434,
+                  -0.1683247685432434,
+                  -0.1538846790790558,
+                  -0.1538846790790558,
+                  0.5169684370791512
+                ],
+                [
+                  -0.6272217035293579,
+                  -0.6243939399719238,
+                  -0.14789696037769318,
+                  -0.39421045780181885,
+                  -0.39421045780181885,
+                  3.414259195327759,
+                  3.414259195327759,
+                  3.414259195327759,
+                  3.414259195327759,
+                  -0.22387869656085968,
+                  -0.4974924623966217,
+                  -0.23966394364833832,
+                  -0.23966394364833832,
+                  -0.23035632073879242,
+                  -0.23035632073879242,
+                  0.6282558370151895
+                ],
+                [
+                  -0.5261620879173279,
+                  -0.5215721726417542,
+                  -5.548336029052734,
+                  2.658273220062256,
+                  2.658273220062256,
+                  -0.1480172872543335,
+                  -0.1480172872543335,
+                  -0.1480172872543335,
+                  -0.1480172872543335,
+                  8.215858459472656,
+                  -0.42683175206184387,
+                  -0.21111108362674713,
+                  -0.21111108362674713,
+                  -0.19293631613254547,
+                  -0.19293631613254547,
+                  0.5126559475770297
+                ],
+                [
+                  -0.6638637185096741,
+                  -0.6604201197624207,
+                  -0.17956073582172394,
+                  -0.34579145908355713,
+                  -0.34579145908355713,
+                  -0.21501769125461578,
+                  -0.21501769125461578,
+                  -0.21501769125461578,
+                  -0.21501769125461578,
+                  -0.14935684204101562,
+                  3.2366528511047363,
+                  5.189968109130859,
+                  5.189968109130859,
+                  -1.9531303644180298,
+                  -1.9531303644180298,
+                  0.6675603026602827
+                ],
+                [
+                  -0.6543282270431519,
+                  -0.6513330340385437,
+                  -0.1964973509311676,
+                  -0.373583048582077,
+                  -0.373583048582077,
+                  -0.22280846536159515,
+                  -0.22280846536159515,
+                  -0.22280846536159515,
+                  -0.22280846536159515,
+                  -0.15669932961463928,
+                  3.243361473083496,
+                  -1.9493274688720703,
+                  -1.9493274688720703,
+                  5.192643642425537,
+                  5.192643642425537,
+                  0.655777272648602
+                ]
+              ]
+            }
+          }
+        }
+      },
+      "ki": {
+        "settings": {
+          "locale": "ki",
+          "trainByDomain": false,
+          "tag": "domain-manager-ki",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "muraho": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "amakuru": {
+            "intent": "how_are_you",
+            "domain": "default"
+          },
+          "nde,witwa": {
+            "intent": "ask_name",
+            "domain": "default"
+          },
+          "nde,uri": {
+            "intent": "ask_identity",
+            "domain": "default"
+          },
+          "nababaye,ndumva": {
+            "intent": "express_sadness",
+            "domain": "default"
+          },
+          "agahinda,mfite": {
+            "intent": "express_depression",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greeting": "default",
+          "how_are_you": "default",
+          "ask_name": "default",
+          "ask_identity": "default",
+          "express_sadness": "default",
+          "express_depression": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "muraho",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "amakuru",
+            "intent": "how_are_you"
+          },
+          {
+            "domain": "default",
+            "utterance": "witwa nde",
+            "intent": "ask_name"
+          },
+          {
+            "domain": "default",
+            "utterance": "uri nde",
+            "intent": "ask_identity"
+          },
+          {
+            "domain": "default",
+            "utterance": "ndumva nababaye",
+            "intent": "express_sadness"
+          },
+          {
+            "domain": "default",
+            "utterance": "mfite agahinda",
+            "intent": "express_depression"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "ki",
+              "tag": "nlu-ki",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "muraho": 1,
+              "amakuru": 1,
+              "witwa": 1,
+              "nde": 1,
+              "uri": 1,
+              "ndumva": 1,
+              "nababaye": 1,
+              "mfite": 1,
+              "agahinda": 1
+            },
+            "intents": {
+              "greeting": 1,
+              "how_are_you": 1,
+              "ask_name": 1,
+              "ask_identity": 1,
+              "express_sadness": 1,
+              "express_depression": 1
+            },
+            "intentFeatures": {
+              "greeting": {
+                "muraho": 1
+              },
+              "how_are_you": {
+                "amakuru": 1
+              },
+              "ask_name": {
+                "witwa": 1,
+                "nde": 1
+              },
+              "ask_identity": {
+                "uri": 1,
+                "nde": 1
+              },
+              "express_sadness": {
+                "ndumva": 1,
+                "nababaye": 1
+              },
+              "express_depression": {
+                "mfite": 1,
+                "agahinda": 1
+              }
+            },
+            "featuresToIntent": {
+              "muraho": [
+                "greeting"
+              ],
+              "amakuru": [
+                "how_are_you"
+              ],
+              "witwa": [
+                "ask_name"
+              ],
+              "nde": [
+                "ask_name",
+                "ask_identity"
+              ],
+              "uri": [
+                "ask_identity"
+              ],
+              "ndumva": [
+                "express_sadness"
+              ],
+              "nababaye": [
+                "express_sadness"
+              ],
+              "mfite": [
+                "express_depression"
+              ],
+              "agahinda": [
+                "express_depression"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "ki",
+                "tag": "nlu-ki",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "muraho",
+                "amakuru",
+                "witwa",
+                "nde",
+                "uri",
+                "ndumva",
+                "nababaye",
+                "mfite",
+                "agahinda"
+              ],
+              "intents": [
+                "greeting",
+                "how_are_you",
+                "ask_name",
+                "ask_identity",
+                "express_sadness",
+                "express_depression"
+              ],
+              "perceptrons": [
+                [
+                  11.564743041992188,
+                  -2.387089967727661,
+                  -0.8390732407569885,
+                  -1.6699469089508057,
+                  -0.8301710486412048,
+                  -1.2477999925613403,
+                  -1.2477999925613403,
+                  -1.246917963027954,
+                  -1.246917963027954,
+                  2.5087002730576553
+                ],
+                [
+                  -2.3567183017730713,
+                  11.564590454101562,
+                  -0.841593861579895,
+                  -1.6752774715423584,
+                  -0.8332436680793762,
+                  -1.2529171705245972,
+                  -1.2529171705245972,
+                  -1.2521840333938599,
+                  -1.2521840333938599,
+                  2.5151751673173792
+                ],
+                [
+                  -0.8174817562103271,
+                  -0.8141615390777588,
+                  9.084830284118652,
+                  4.205389976501465,
+                  -4.885260105133057,
+                  -0.4544796645641327,
+                  -0.4544796645641327,
+                  -0.4518022835254669,
+                  -0.4518022835254669,
+                  0.8255495031258995
+                ],
+                [
+                  -0.8139682412147522,
+                  -0.8106575608253479,
+                  -4.85678243637085,
+                  4.22681999206543,
+                  9.089447975158691,
+                  -0.487951397895813,
+                  -0.487951397895813,
+                  -0.4797604978084564,
+                  -0.4797604978084564,
+                  0.8099995710795395
+                ],
+                [
+                  -1.2296301126480103,
+                  -1.2245005369186401,
+                  -0.4606686532497406,
+                  -0.9025089144706726,
+                  -0.4341011941432953,
+                  6.521381378173828,
+                  6.521381378173828,
+                  -0.6840288639068604,
+                  -0.6840288639068604,
+                  1.236582893734414
+                ],
+                [
+                  -1.2344211339950562,
+                  -1.2293754816055298,
+                  -0.4673687517642975,
+                  -0.9111788868904114,
+                  -0.43625307083129883,
+                  -0.655891478061676,
+                  -0.655891478061676,
+                  6.5192718505859375,
+                  6.5192718505859375,
+                  1.2410489379502416
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "hello"
+      ],
+      [
+        "en",
+        "hi"
+      ],
+      [
+        "en",
+        "how are you"
+      ],
+      [
+        "en",
+        "what's your name"
+      ],
+      [
+        "en",
+        "who are you"
+      ],
+      [
+        "en",
+        "I feel sad"
+      ],
+      [
+        "en",
+        "I'm depressed"
+      ],
+      [
+        "ki",
+        "muraho"
+      ],
+      [
+        "ki",
+        "amakuru"
+      ],
+      [
+        "ki",
+        "witwa nde"
+      ],
+      [
+        "ki",
+        "uri nde"
+      ],
+      [
+        "ki",
+        "ndumva nababaye"
+      ],
+      [
+        "ki",
+        "mfite agahinda"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}
