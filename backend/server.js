@@ -1,28 +1,31 @@
+
 require('dotenv').config();
 const express = require('express');
+const morgan = require('morgan');
 const cors = require('cors');
 const axios = require('axios');
+const emailRouter = require('./routes/emailRouter');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+morgan.token('body', (req) => JSON.stringify(req.body));
+app.use(morgan(':method :url :status :response-time ms - :body'));
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-
 
 async function getChatGPTResponse(message, language) {
     const languageMap = {
         'en': 'English',
         'rw': 'Kinyarwanda',
-        'fr': 'French',
         'sw': 'Kiswahili'
     };
 
     const prompt = `You are a supportive chatbot specializing in depression. Respond to the following message in ${languageMap[language]}, focusing on providing support, information, or resources related to depression: "${message}"`;
-    
+   
     try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
             model: "gpt-3.5-turbo",
@@ -47,15 +50,14 @@ async function getChatGPTResponse(message, language) {
 
 async function detectLanguage(message) {
     const franc = await import('franc-min');
-    const detectedLang = franc.franc(message, { minLength: 3, only: ['eng', 'kin', 'fra', 'swh'] });
-    
+    const detectedLang = franc.franc(message, { minLength: 3, only: ['eng', 'kin', 'swh'] });
+   
     const langMap = {
         'eng': 'en',
         'kin': 'rw',
-        'fra': 'fr',
         'swh': 'sw'
     };
-    
+   
     return langMap[detectedLang] || 'en';
 }
 
@@ -74,6 +76,8 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
+app.use('/api', emailRouter);
+
 app.listen(port, () => {
-    console.log(`The server is running on ${port}`)
+    console.log(`The server is running on ${port}`);
 });

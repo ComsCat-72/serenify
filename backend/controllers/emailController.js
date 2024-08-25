@@ -1,3 +1,4 @@
+
 const transporter = require('../config/mailer');
 
 exports.sendEmail = (req, res) => {
@@ -12,11 +13,12 @@ exports.sendEmail = (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
-      res.status(500).send('Error: Could not send email');
-    } else {
-      console.log('Email sent: ' + info.response);
-      res.status(200).send('Email sent successfully');
+      console.error('Error sending email:', error);
+      return res.status(500).json({ message: 'Error sending email', error: error.message });
     }
+    console.log('Email sent:', info.response);
+    res.status(200).json({ message: 'Email sent successfully' });
   });
 };
+
+

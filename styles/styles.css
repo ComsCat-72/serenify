@@ -1,4 +1,4 @@
-/* styles.css */
+
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap');
@@ -360,16 +360,13 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 .footer-section {
-    flex: 1;
-    margin-bottom: 2rem;
-    min-width: 200px;
+    flex: 1 1 200px;
+    margin: 10px;
 }
+
 
 .footer-section h3 {
     color: #3498db;
@@ -1041,47 +1038,14 @@ textarea {
 #team-members {
     padding: 4rem 0;
 }
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.team-member {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    padding: 2rem;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.team-member:hover {
-    transform: translateY(-5px);
-}
-
-.team-member img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-}
-
-.team-member h3 {
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
-}
-
-.team-member p:first-of-type {
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
+/* Responsive design */
 @media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
     .team-grid {
         grid-template-columns: 1fr;
     }
@@ -1133,9 +1097,7 @@ textarea {
         min-height: calc(100vh - 60px);
     }
 }
-/* Existing styles... */
 
-/* Add these styles at the end of the file */
 
 /* Team members section */
 #team-members {
@@ -1143,40 +1105,59 @@ textarea {
     background-color: #fff;
 }
 
-.team-slider {
-    overflow: hidden;
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
 }
 
-.team-grid {
-    display: flex;
-    animation: slide 30s linear infinite;
-    width: 200%;
-}
-
 .team-member {
-    flex: 0 0 calc(16.666% - 20px);
-    margin: 0 10px;
+    flex: 0 0 calc(25% - 20px);
+    margin: 10px;
     text-align: center;
 }
 
 .team-member img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
 }
 
 .team-member h3 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin-bottom: 5px;
 }
 
 .team-member p {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #666;
 }
+
+@media (max-width: 768px) {
+    .team-member {
+        flex: 0 0 calc(80% - 20px);
+        max-width: 350px;
+    }
+
+    .team-member img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .team-member h3 {
+        font-size: 1.3em;
+    }
+
+    .team-member p {
+        font-size: 1em;
+    }
+}
+
+
+
 
 @keyframes slide {
     0% {
@@ -1239,4 +1220,29 @@ textarea {
 
 .member-social a:hover {
     color: #2980b9;
+}
+.footer-section.sponsors {
+    text-align: center;
+}
+
+.sponsor-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.sponsor-logos img {
+    max-width: 100px;
+    height: auto;
+}
+.sponsor {
+    text-align: center;
+}
+
+.sponsor p {
+    margin-bottom: 5px;
+    font-weight: bold;
 }
