@@ -9,9 +9,7 @@ const emailRouter = require('./routes/emailRouter');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors({
-    origin: 'https://your-frontend-url.vercel.app'
-  }));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 morgan.token('body', (req) => JSON.stringify(req.body));

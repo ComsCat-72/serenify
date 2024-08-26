@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = new FormData(this);
             
-            fetch('https://your-backend-url.vercel.app/api/send-email', {
+            fetch('http://localhost:3000/api/send-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
