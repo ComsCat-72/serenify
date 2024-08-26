@@ -9,7 +9,9 @@ const emailRouter = require('./routes/emailRouter');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://comscat-comscat-72-comscat-72s-projects.vercel.app/'
+  }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 morgan.token('body', (req) => JSON.stringify(req.body));
