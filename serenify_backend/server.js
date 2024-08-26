@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: 'https://comscat-comscat-72-comscat-72s-projects.vercel.app/'
+    origin: 'https://your-frontend-url.vercel.app'
   }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -83,3 +83,5 @@ app.use('/api', emailRouter);
 app.listen(port, () => {
     console.log(`The server is running on ${port}`);
 });
+
+module.exports = app;
