@@ -9,7 +9,12 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://serenifyfrontend-o6uz9q1c4-comscat-72s-projects.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
