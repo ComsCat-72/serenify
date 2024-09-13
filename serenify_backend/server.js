@@ -7,7 +7,7 @@ const emailRouter = require('./routes/emailRouter');
 const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 
 app.use(cors({
@@ -26,45 +26,45 @@ app.use(morgan(':method :url :status :response-time ms - :body'));
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 // Serve static files from the frontend directory
-app.use(express.static(path.join(__dirname, '../serenify_frontend')));
+app.use(express.static(path.join(__dirname, 'serenify_frontend')));
 
 // Route to serve the main index.html file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/index.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/index.html'));
 });
 
 // Serve specific HTML files for each route
 app.get('/assessment', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/assessment.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/assessment.html'));
 });
 
 app.get('/chatbot', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/chatbot.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/chatbot.html'));
 });
 
 app.get('/coming', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/comming.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/comming.html'));
 });
 
 app.get('/contact', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/contact.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/contact.html'));
 });
 
 app.get('/info', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/info.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/info.html'));
 });
 
 app.get('/involved', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/involved.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/involved.html'));
 });
 
 app.get('/support', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/support.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/support.html'));
 });
 
 // Catch-all route to handle unknown paths
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../serenify_frontend/index.html'));
+    res.sendFile(path.join(__dirname, 'serenify_frontend/index.html'));
 });
 
 // Function to get response from ChatGPT
